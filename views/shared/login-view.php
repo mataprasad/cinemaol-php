@@ -32,7 +32,7 @@
     <div class="menu_"
          style="height: 50%; display: block; vertical-align: top; text-align: right; line-height: 100%;">
              <?php if (!$oIsAdmin) { ?>
-            <a href="<?php HREF("/public/contact.php"); ?>">Contact Us</a><a href="">About Us</a><a
+            <a href="<?php HREF("/public/contact.php"); ?>">Contact Us</a><a href="<?php HREF("/public/about.php"); ?>">About Us</a><a
                 href="<?php HREF("/public/movie.php"); ?>">Movies</a><a
                 href="<?php HREF("/public/index.php"); ?>">Home</a>
             <?php } else { ?>
