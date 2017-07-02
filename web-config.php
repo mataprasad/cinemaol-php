@@ -21,6 +21,12 @@ define('DB_COLLATE', '');
 
 define('APP_DEBUG', FALSE);
 
+function REDIRECT($url) {
+
+    header("Location: " . $url);
+    exit();
+}
+
 function ABS_URL() {
     $pageURL = 'http';
 
@@ -35,6 +41,10 @@ function ABS_URL() {
 
 function HREF($param) {
     echo ABS_URL() . $param;
+}
+
+function ToFullUrl($param) {
+    return ABS_URL() . $param;
 }
 
 function IS_POST() {
@@ -53,6 +63,6 @@ function IS_AJAX() {
 
 if (!defined('ABSPATH'))
     define('ABSPATH', dirname(__FILE__));
-
+session_start();
 require_once(ABSPATH . '/app-load.php');
 ?>

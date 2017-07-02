@@ -1,8 +1,7 @@
 <?php
 
 function app_render($fn_body, $fn_header_section, $fn_footer_section, $param_fn_body, $param_fn_header_section, $param_fn_footer_section) { ?>
-
-    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
     <html xmlns="http://www.w3.org/1999/xhtml">
         <head>
             <title>CinemaOL | An Online Cinema Ticket Booking System</title>
@@ -92,7 +91,7 @@ function app_render($fn_body, $fn_header_section, $fn_footer_section, $param_fn_
 
                         <ul style="padding: 0px; width: 100px; height: 20px; float: right; margin: 0px; list-style-type: none;">
                             <li style="float: right; height: 20px; width: 100px; margin: 0px; padding: 0px;">
-                                <a href="<?php echo ABS_URL() . "/public?do=login-admin"; ?>"
+                                <a href="<?php echo ABS_URL() . "/public/admin-login.php"; ?>"
                                    style="width: 100px; height: 20px; display: block; line-height: 20px; vertical-align: middle; text-align: center; color: #808000; text-decoration: underline; font-weight: bold; font-size: 12pt;">Admin Login  </a></li>
                         </ul>
 

@@ -9,10 +9,11 @@
 
              if (isset($_SESSION["USER_INFO"])) {
                  $oUserInfo = $_SESSION["USER_INFO"];
+                 
                  if ($oUserInfo != null) {
-                     if (str_word_count($name) > 20) {
-
-                         //$name = $name . substring(0, 20) . toUpperCase();
+                     $name = $oUserInfo->User_FName . " " . $oUserInfo->User_LName;
+                     if (count($name) > 20) {
+                         substr($name, 0, 21);
                      }
                  }
              }
