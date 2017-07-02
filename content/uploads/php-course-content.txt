@@ -1,0 +1,25 @@
+Basic Programming
+-Variables
+-Operators
+-Data Types(int,float,string,char)
+-If, If Else, Loop, Switch
+-Collections(list,dictionary)
+-Class
+	-Property
+	-Method
+-static and constants
+-inheritance
+------------------------------------------------
+Server Based programming
+-HTTP Methods
+	-GET/POST
+-Input types
+-BASIC Page OBJECTS
+	REQUEST
+-Writing on page
+-including pages
+-PDO
+	-QUERY DATA
+	-INSERT/UPDATE/DELETE
+	-SQL INJECTION PROTECTION
+-Generating JSON/XML
