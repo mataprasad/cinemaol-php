@@ -116,18 +116,14 @@ function public_login_body($msg, $post_url, $page_title) {
                             <td class="style2">&nbsp;
                             </td>
                             <td align="center" class="style3" colspan="2">
-                        <c:choose>
-                            <c:when
-                                test="${title!=' ADMIN'}">
-                                <a id="lnkForgotPass"
-                                   style="text-decoration: underline;"
-                                   href="">Forgot Password ??</a>
-                                </td
-                            </c:when>
-                        </c:choose>
-
-                        <td align="left">&nbsp;
-                        </td>
+                                <?php if (strlen($page_title) == 0) { ?>
+                                    <a id="lnkForgotPass"
+                                       style="text-decoration: underline;"
+                                       href="">Forgot Password ??</a>
+                                   <?php } ?>
+                            </td>
+                            <td align="left">&nbsp;
+                            </td>
                         </tr>
                     </table>
                 </div>

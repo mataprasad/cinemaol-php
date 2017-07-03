@@ -2,7 +2,6 @@
 
 require_once(ABSPATH . '/lib/db_helper/shared/ez_sql_core.php');
 require_once(ABSPATH . '/lib/db_helper/mysqli/ez_sql_mysqli.php');
-require_once(ABSPATH . '/system.web/db_helper.php');
 
 require_once(ABSPATH . '/views/shared/layout.php');
 
