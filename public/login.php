@@ -12,7 +12,6 @@ $msg = "";
 $post_url = "/public/login.php";
 $page_title = "";
 if (IS_POST()) {
-    $msg = "THIS IS POST REQUEST";
     $id = $_POST["txtLoginId"];
     $pwd = $_POST["txtLoginPass"];
 
@@ -22,6 +21,8 @@ if (IS_POST()) {
     if ($data != null && count($data) > 0) {
         $_SESSION["USER_INFO"] = $data[0];
         REDIRECT(ToFullUrl("/public/index.php"));
+    } else {
+        $msg = "Invalid login details.";
     }
 }
 public_login_render($msg, $post_url, $page_title);

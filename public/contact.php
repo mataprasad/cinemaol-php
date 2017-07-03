@@ -12,7 +12,7 @@ require_once '../web-config.php';
 require_once (ABSPATH . '/views/public/contact.php');
 $msg = "";
 if (IS_POST()) {
-    $msg = "THIS IS POST REQUEST";
+    $msg = "Thanks for your valuable feedback.";
 }
 public_contact_render($msg);
 ?>
