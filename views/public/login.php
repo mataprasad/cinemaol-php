@@ -119,7 +119,7 @@ function public_login_body($msg, $post_url, $page_title) {
                                 <?php if (strlen($page_title) == 0) { ?>
                                     <a id="lnkForgotPass"
                                        style="text-decoration: underline;"
-                                       href="">Forgot Password ??</a>
+                                       href="<?php HREF("/public/reset-pass.php");?>">Forgot Password ??</a>
                                    <?php } ?>
                             </td>
                             <td align="left">&nbsp;
