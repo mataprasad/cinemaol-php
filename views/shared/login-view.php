@@ -23,7 +23,7 @@
              }
              ?>
              <?php if ($oUserInfo != null) { ?>
-            <a href="<?php HREF("/public/logout.php"); ?>">Log Out</a> <a class="xx" style="width: 300px; background-color: #ffffff;" href="" title="Click to go your Account Home !">Welcome <?php echo $name ?></a>
+            <a href="<?php HREF("/public/logout.php"); ?>">Log Out</a> <a class="xx" style="width: 300px; background-color: #ffffff;" href="<?php HREF("/user/index.php"); ?>"" title="Click to go your Account Home !">Welcome <?php echo $name ?></a>
         <?php } else { ?>
 
             <a href="<?php HREF("/public/login.php"); ?>">Login</a> <a href="<?php HREF("/public/register.php"); ?>">Register</a>

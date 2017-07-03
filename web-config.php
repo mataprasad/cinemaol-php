@@ -21,6 +21,8 @@ define('DB_COLLATE', '');
 
 define('APP_DEBUG', FALSE);
 
+define('GRID_PAGE_SIZE', "7");
+
 
 if (!defined('ABSPATH'))
     define('ABSPATH', dirname(__FILE__));
