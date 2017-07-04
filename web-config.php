@@ -23,6 +23,9 @@ define('APP_DEBUG', FALSE);
 
 define('GRID_PAGE_SIZE', "7");
 
+define('APP_NAME', "");
+//define('APP_NAME', "/cinemaol");
+
 
 if (!defined('ABSPATH'))
     define('ABSPATH', dirname(__FILE__));

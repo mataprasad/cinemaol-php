@@ -15,7 +15,7 @@ function ABS_URL() {
     } else {
         $pageURL .= $_SERVER["SERVER_NAME"]; // . $_SERVER["REQUEST_URI"];
     }
-    return $pageURL;
+    return $pageURL.APP_NAME;
 }
 
 function HREF($param) {
