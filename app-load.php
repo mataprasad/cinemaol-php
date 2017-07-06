@@ -9,8 +9,9 @@ $url_found = "TRUE";
 if (isset($_REQUEST["no"])) {
     $url_found = "FALSE";
 }
-echo $url_found;
-exit();
+//echo $_REQUEST["url"];
+//echo $url_found;
+//exit();
 
 $requested_page = $_SERVER["REQUEST_URI"];
 //echo "<br>" . $requested_page;
@@ -18,7 +19,9 @@ $requested_page = $_SERVER["REQUEST_URI"];
 //fnDumpUserList();
 $call_for_system_dir = FALSE;
 if (stripos($requested_page, "views") !== FALSE) {
-    $call_for_system_dir = TRUE;
+    if (!isset($_SESSION["USER_INFO"])) {
+        $call_for_system_dir = TRUE;
+    }
 }
 if (stripos($requested_page, "admin") !== FALSE) {
     $call_for_system_dir = TRUE;
@@ -27,7 +30,9 @@ if (stripos($requested_page, "lib") !== FALSE) {
     $call_for_system_dir = TRUE;
 }
 if (stripos($requested_page, "user") !== FALSE) {
-    $call_for_system_dir = TRUE;
+    if (!isset($_SESSION["USER_INFO"])) {
+        $call_for_system_dir = TRUE;
+    }
 }
 if (stripos($requested_page, "system.web") !== FALSE) {
     $call_for_system_dir = TRUE;

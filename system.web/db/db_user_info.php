@@ -132,5 +132,20 @@ function getBookingDetails($id) {
 
     return (OBJECT) array("TktInfo" => $result1[0], "SheatInfo" => $result2);
 }
+
+function updateUser($user_info, $user_id) {
+    $db = new ezSQL_mysqli(DB_USER, DB_PASSWORD, DB_NAME, DB_HOST);
+
+    $query = "Update UserInfo set "
+            . $db->get_set($user_info)
+            . " where User_Id='" . $user_id . "';";
+    $result = $db->query($query);
+
+    if (APP_DEBUG) {
+        var_dump($query);
+        $db->vardump($result);
+    }
+    return $result;
+}
 ?>
 

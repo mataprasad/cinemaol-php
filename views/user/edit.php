@@ -58,7 +58,7 @@ function user_edit_head() { ?>
 <?php } ?>
 <?php
 
-function user_edit_body($user_info) {
+function user_edit_body($user_info, $msg, $state_list) {
     ?>
 
     <form action="<?php HREF("/user/edit.php"); ?>" method="post"
@@ -90,21 +90,21 @@ function user_edit_body($user_info) {
                             <tr>
                                 <td class="style4">First Name </td>
                                 <td class="style5">
-                                    <input type="text" id="User_FName" name="user_FName" value="${userInfo.getUser_FName() }" />
+                                    <input type="text" id="User_FName" name="user_FName" value="<?php echo $user_info->User_FName; ?>" />
                                 </td>
                                 <td></td>
                             </tr>
                             <tr>
                                 <td class="style4">Last Name </td>
                                 <td class="style5">
-                                    <input type="text" id="User_LName" name="user_LName" value="${userInfo.getUser_LName() }" />
+                                    <input type="text" id="User_LName" name="user_LName" value="<?php echo $user_info->User_LName; ?>" />
                                 </td>
                                 <td></td>
                             </tr>
                             <tr>
                                 <td class="style4">Email </td>
                                 <td class="style5">
-                                    <input type="text" id="User_Email" name="user_Email" value="${userInfo.getUser_Email() }" />
+                                    <input type="text" id="User_Email" name="user_Email" value="<?php echo $user_info->User_Email; ?>" />
                                 </td>
                                 <td></td>
                             </tr>
@@ -112,43 +112,50 @@ function user_edit_body($user_info) {
                                 <td class="style4">Mobile No. </td>
                                 <td class="style5">
 
-                                    <input type="text" id="User_MobileNo" name="user_MobileNo" value="${userInfo.getUser_MobileNo() }" />
+                                    <input type="text" id="User_MobileNo" name="user_MobileNo" value="<?php echo $user_info->User_MobileNo; ?>" />
                                 </td>
                                 <td></td>
                             </tr>
                             <tr>
                                 <td class="style4">Address1</td>
                                 <td class="style5">
-                                    <input type="text" id="User_Add" name="user_Add" value="${userInfo.getUser_Add() }" />
+                                    <input type="text" id="User_Add" name="user_Add" value="<?php echo $user_info->User_Add; ?>" />
                                 </td>
                                 <td></td>
                             </tr>
                             <tr>
                                 <td class="style4">City </td>
                                 <td class="style5">
-                                    <input type="text" id="User_City" name="user_City" value="${userInfo.getUser_City() }" />
+                                    <input type="text" id="User_City" name="user_City" value="<?php echo $user_info->User_City; ?>" />
                                 </td>
                                 <td></td>
                             </tr>
                             <tr>
                                 <td class="style4">State </td>
                                 <td class="style5">
-
-                            <t:_stateDropdown ddlValue="${userInfo.getUser_State() }" dropdownId="user_State" onchangeEvent=" "></t:_stateDropdown>
-                            </td>
-                            <td>&nbsp;</td>
+                                    <select id="ddlState" name="ddlState">
+                                        <option value="0">--SELECT--</option>
+                                        <?php for ($index = 0; $index < count($state_list); $index++) { ?>
+                                            <option value="<?php echo $state_list[$index]->value; ?>"><?php echo $state_list[$index]->text; ?></option>
+                                        <?php } ?>
+                                    </select>
+                                    <script type="text/javascript">
+                                        $("#ddlState").val("<?php echo $user_info->User_State; ?>");
+                                    </script>
+                                </td>
+                                <td>&nbsp;</td>
                             </tr>
                             <tr>
                                 <td class="style4">Security Question </td>
                                 <td class="style5">
-                                    <input type="text" id="User_SQ" name="user_SQ" value="${userInfo.getUser_SQ() }" />
+                                    <input type="text" id="User_SQ" name="user_SQ" value="<?php echo $user_info->User_SQ; ?>" />
                                 </td>
                                 <td></td>
                             </tr>
                             <tr>
                                 <td class="style4">Security Answer </td>
                                 <td class="style5">
-                                    <input type="text" id="User_SA" name="user_SA" value="${userInfo.getUser_SA() }" />
+                                    <input type="text" id="User_SA" name="user_SA" value="<?php echo $user_info->User_SA; ?>" />
                                 </td>
                                 <td></td>
                             </tr>
@@ -163,14 +170,13 @@ function user_edit_body($user_info) {
                             </tr>
                             <tr>
                                 <td class="style2" colspan="3">
-                            <c:if test="${ msg!=null && msg != ''}">
-                                <div
-                                    style="padding: 3px; margin: 0px; background-color: #FF9900; border: 1px solid #993333; color: #000000; font-weight: bold; font-size: 12pt; display: block; vertical-align: middle; text-align: left; line-height: 30px; height: 30px; width: 291px;">
-                                    ${msg }
-                                </div>
-                            </c:if>
+                                    <?php if ($msg != null) { ?>
+                                        <div style="display: block; height: 30px; border: 1px solid #993333; background-color: #FF9900; color: #000000; font-size: 12pt; font-weight: bolder; line-height: 30px; vertical-align: middle; text-align: left; padding: 5px">
+                                            <?php echo $msg; ?>
+                                        </div>
+                                    <?php } ?>
 
-                            </td>
+                                </td>
                             </tr>
                         </table>
 
@@ -188,7 +194,7 @@ function user_edit_body($user_info) {
 
 <?php
 
-function user_edit_render($user_info) {
-    app_render("user_edit_body", "user_edit_head", null, array($user_info), array(), array());
+function user_edit_render($user_info, $msg, $state_list) {
+    app_render("user_edit_body", "user_edit_head", null, array($user_info, $msg, $state_list), array(), array());
 }
 ?>

@@ -231,7 +231,8 @@ function public_register_body($errorMsg, $state_list) {
                             <td>&nbsp;</td>
                             <td align="left" class="style2">State :</td>
                             <td align="left" class="style3">
-                                <select id="ddlState" name="ddlState">
+                                <select id="ddlState" name="ddlState"
+                                        style="border-color: #993333; border-style: solid; border-width: 1px;  width: 150px;">
                                     <option value="0">--SELECT--</option>
                                     <?php for ($index = 0; $index < count($state_list); $index++) { ?>
                                         <option value="<?php echo $state_list[$index]->value; ?>"><?php echo $state_list[$index]->text; ?></option>
@@ -266,15 +267,15 @@ function public_register_body($errorMsg, $state_list) {
                             <td align="left" class="style2">Verification Code :</td>
                             <td align="left" class="style3" rowspan="2" id="tdCaptcha">
                                 <img id="captchaImage" src=""
-                                     style="border-color: #993333; border-style: solid; border-width: 0px; height: 40px; width: 150px;"/>
+                                     style="border-color: #993333; border-style: solid; border-width: 1px; height: 40px; width: 150px;"/>
                                 <script>
                                     fn_RefreshCaptcha();
                                 </script>
                             </td>
-                            <td align="left" valign="middle"><a href="#"
+                            <td align="left" valign="middle"><a href="javascript:void(0);"
                                                                 onclick="fn_RefreshCaptcha();" title="reload verification code."
                                                                 style="padding: 0px; margin: 0px; background-image: url('<?php HREF("/content/resources/refresh.png"); ?>'); vertical-align:
-                                                                sub; background-repeat:no-repeat; width: 30px; height: 30px; display:block;"></a></td>
+                                                                sub; background-repeat:no-repeat; width: 30px; height: 30px; display:block; position: relative;top: 15px;"></a></td>
                             <td>&nbsp;</td>
                         </tr>
                         <tr>

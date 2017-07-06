@@ -44,7 +44,7 @@ function user_change_pwd_head() { ?>
 
 <?php
 
-function user_change_pwd_body($user_info) {
+function user_change_pwd_body($msg) {
     ?>
 
 
@@ -104,13 +104,13 @@ function user_change_pwd_body($user_info) {
                             <td align="left">&nbsp;</td>
                         </tr>
                         <tr>
-                            <td align="left" class="style4" colspan="3">
-                        <c:if test="${ msg!=null && msg!='' }">
-                            <div style="display: block; height: 30px; border: 1px solid #993333; background-color: #FF9900; color: #000000; font-size: 12pt; font-weight: bolder; line-height: 30px; vertical-align: middle; text-align: left; padding: 5px">
-                                ${msg }
-                            </div>
-                        </c:if>
-                        </td>
+                            <td align="left" class="style4" colspan="3">                        
+                                <?php if ($msg != null) { ?>
+                                    <div style="display: block; height: 30px; border: 1px solid #993333; background-color: #FF9900; color: #000000; font-size: 12pt; font-weight: bolder; line-height: 30px; vertical-align: middle; text-align: left; padding: 5px">
+                                        <?php echo $msg; ?>
+                                    </div>
+                                <?php } ?>
+                            </td>
                         </tr>
                     </table>
 
@@ -125,7 +125,7 @@ function user_change_pwd_body($user_info) {
 <?php } ?>
 <?php
 
-function user_change_pwd_render($user_info) {
-    app_render("user_change_pwd_body", "user_change_pwd_head", null, array($user_info), array(), array());
+function user_change_pwd_render($msg) {
+    app_render("user_change_pwd_body", "user_change_pwd_head", null, array($msg), array(), array());
 }
 ?>
