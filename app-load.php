@@ -23,8 +23,10 @@ if (stripos($requested_page, "views") !== FALSE) {
         $call_for_system_dir = TRUE;
     }
 }
-if (stripos($requested_page, "admin") !== FALSE) {
-    $call_for_system_dir = TRUE;
+if (stripos($requested_page, "admin") !== FALSE && stripos($requested_page, "public") === FALSE) {
+    if (!isset($_SESSION["USER_INFO"]) || $_SESSION["IS_ADMIN"] !== TRUE) {
+        $call_for_system_dir = TRUE;
+    }
 }
 if (stripos($requested_page, "lib") !== FALSE) {
     $call_for_system_dir = TRUE;

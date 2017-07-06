@@ -37,9 +37,9 @@
                 href="<?php HREF("/public/movie.php"); ?>">Movies</a><a
                 href="<?php HREF("/public/index.php"); ?>">Home</a>
             <?php } else { ?>
-            <a href="<?php HREF("/public/index.php"); ?>" style="width: 150px;">Add Movies</a>
-            <a href="<?php HREF("/public/index.php"); ?>" style="width: 150px;">Remove Movies</a>
-            <a href="<?php HREF("/public/index.php"); ?>" style="width: 150px;">Manage Shows</a>
+            <a href="<?php HREF("/admin/add-movie.php"); ?>" style="width: 150px;">Add Movies</a>
+            <a href="<?php HREF("/admin/remove-movie.php"); ?>" style="width: 150px;">Remove Movies</a>
+            <a href="<?php HREF("/admin/manage-show.php"); ?>" style="width: 150px;">Manage Shows</a>
         <?php } ?>
         <br /> <br />
         <div style="text-align: center;">Your IP is: <?php echo $_SERVER['REMOTE_ADDR'] ?></div>
