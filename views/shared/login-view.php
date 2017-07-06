@@ -9,7 +9,7 @@
 
              if (isset($_SESSION["USER_INFO"])) {
                  $oUserInfo = $_SESSION["USER_INFO"];
-                 
+
                  if ($oUserInfo != null) {
                      $name = $oUserInfo->User_FName . " " . $oUserInfo->User_LName;
                      if (count($name) > 20) {

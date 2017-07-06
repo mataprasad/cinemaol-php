@@ -31,5 +31,6 @@ if (!defined('ABSPATH'))
     define('ABSPATH', dirname(__FILE__));
 session_start();
 require_once(ABSPATH . '/system.web/server_utility.php');
+require_once(ABSPATH . '/system.web/file_upload.php');
 require_once(ABSPATH . '/app-load.php');
 ?>

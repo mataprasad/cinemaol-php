@@ -15,5 +15,12 @@ $msg = NULL;
 $status_list = getStatusList();
 $language_list = getLanguageList();
 $industry_list = getIndustryList();
+
+if (IS_POST()) {
+
+    $target_file = ABSPATH . "/content/uploads/" . GET_GUID();
+    SAVE_UPLOADED_FILE("fuPoster", $target_file);
+}
+
 admin_add_movie_render($msg, $status_list, $language_list, $industry_list);
 ?>
