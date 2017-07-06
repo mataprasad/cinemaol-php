@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 02, 2017 at 12:20 PM
+-- Generation Time: Jul 06, 2017 at 06:19 AM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -19,6 +19,20 @@ SET time_zone = "+00:00";
 --
 -- Database: `db_cinemaol`
 --
+
+DELIMITER $$
+--
+-- Procedures
+--
+CREATE DEFINER=`root`@`localhost` PROCEDURE `usp_get_booking_history` (IN `p_user_id` INT, IN `p_min` INT, IN `p_max` INT)  BEGIN
+	SELECT 0 INTO @x;
+	SELECT *,@x as total_records FROM (SELECT  @x:=@x+1 as SNo,ShowInfo.Show_Id,ShowInfo.Movie_Name, 
+	TicketInfo.Ticket_Id,TicketInfo.Ticket_No,TicketInfo.User_Id,TicketInfo.Show_Date, 
+	TicketInfo.Show_Time,TicketInfo.Booking_Date,'' as URL FROM TicketInfo JOIN ShowInfo ON TicketInfo.Show_Id=ShowInfo.Show_Id 
+	where TicketInfo.User_Id=p_user_id) AS X WHERE SNO between p_min and p_max;
+ END$$
+
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -85,11 +99,11 @@ CREATE TABLE `movieinfo` (
 --
 
 INSERT INTO `movieinfo` (`Movie_Id`, `Movie_ImageURL`, `Movie_Status`, `Movie_Title`, `Movie_ReleaseDate`, `Movie_Director`, `Movie_Casts`, `Movie_Language`, `Movie_Industry`) VALUES
-(8, '1.jpg', 3, 'KAHAANI', '09/03/2012', 'SUJOY GHOSH', 'VIDYA BALAN,  PARAMBRATA, CHAT', 'HINDI', 'BOLLYWOOD'),
-(9, '2.jpg', 3, 'PAAN SINGH TOMAR', '02/03/2012', 'TIGMANSHU DHULIA', 'IRRFAN,MAHI GILL,VIPIN SHARMA', 'HINDI', 'BOLLYWOOD'),
+(8, '1.jpg', 1, 'KAHAANI', '09/03/2012', 'SUJOY GHOSH', 'VIDYA BALAN,  PARAMBRATA, CHAT', 'HINDI', 'BOLLYWOOD'),
+(9, '2.jpg', 1, 'PAAN SINGH TOMAR', '02/03/2012', 'TIGMANSHU DHULIA', 'IRRFAN,MAHI GILL,VIPIN SHARMA', 'HINDI', 'BOLLYWOOD'),
 (10, '3.png', 3, 'HOUSEFULL 2', '05/04/2012', 'SAJID KHAN', 'AKSHAY KUMAR,ASIN,  JOHN ABRAH', 'HINDI', 'BOLLYWOOD'),
-(11, '11.jpg', 3, 'DARK SHADOWS', '11/05/2012', 'TIM BURTON', 'JOHNNY DEPP, MICHELLE PFEIFFER', 'ENGLISH', 'HOLLYWOOD'),
-(12, '12.jpg', 3, 'SNOW WHITE AND THE HUNTSMAN ', '08/06/2012', 'RUPERT SANDERS', 'KRISTEN STEWART, CHRIS HEMSWOR', 'ENGLISH', 'HOLLYWOOD'),
+(11, '11.jpg', 2, 'DARK SHADOWS', '11/05/2012', 'TIM BURTON', 'JOHNNY DEPP, MICHELLE PFEIFFER', 'ENGLISH', 'HOLLYWOOD'),
+(12, '12.jpg', 2, 'SNOW WHITE AND THE HUNTSMAN ', '08/06/2012', 'RUPERT SANDERS', 'KRISTEN STEWART, CHRIS HEMSWOR', 'ENGLISH', 'HOLLYWOOD'),
 (13, '13.jpg', 3, 'LUTERA', '01/01/2012', 'MAI', 'DIDIYA', 'TAMIL', 'BOLLYWOOD'),
 (14, '14.jpg', 3, 'Demo Movie45', '05/09/2013', 'Mata Prasad', 'Mata Prasad,  Chauhan Mata Pra', 'ENGLISH', 'HOLLYWOOD'),
 (15, '15.jpg', 3, 'Demo00', '30/09/2013', 'aa', 'aaa', 'HINDI', 'BOLLYWOOD'),
@@ -100,12 +114,12 @@ INSERT INTO `movieinfo` (`Movie_Id`, `Movie_ImageURL`, `Movie_Status`, `Movie_Ti
 (20, '20.jpg', 3, 'VINAY', '31/10/2013', 'Mata Prasad Chauhan', 'VINAY', 'ENGLISH', 'HOLLYWOOD'),
 (21, '21.png', 3, 'Jyoti', '30/11/2013', 'vinay', 'vinay', 'HINDI', 'BOLLYWOOD'),
 (22, '22.jpg', 3, 'UPCOMMING 001', '30/11/2013', 'ME', 'YOU', 'ENGLISH', 'HOLLYWOOD'),
-(23, '23.jpg', 1, 'New Running Movie', '15/05/2014', 'MATA', 'MATA', 'HINDI', 'BOLLYWOOD'),
+(23, '23.jpg', 3, 'New Running Movie', '15/05/2014', 'MATA', 'MATA', 'HINDI', 'BOLLYWOOD'),
 (24, '24.jpg', 3, 'New Upcomming Movie', '23/05/2014', 'MATA', 'MATA', 'ENGLISH', 'HOLLYWOOD'),
 (35, '35.jpg', 3, 'Ek Villen', '19/06/2014', 'MATA', 'MATA', 'HINDI', 'BOLLYWOOD'),
 (36, '36.jpg', 3, 'Ek Villen', '19/06/2014', 'MATA', 'AT', 'HINDI', 'BOLLYWOOD'),
-(37, '37.jpg', 1, 'AIR LIFT', '10/03/2016', 'MATA', 'Tekesh  Monu  heroin', 'HINDI', 'BOLLYWOOD'),
-(38, '38.jpg', 1, 'Udta Punjab', '01/05/2016', 'Abhishek Chaubey', 'Shahid Kapoor  Kareena Kapoor ', 'HINDI', 'BOLLYWOOD');
+(37, '37.jpg', 3, 'AIR LIFT', '10/03/2016', 'MATA', 'Tekesh  Monu  heroin', 'HINDI', 'BOLLYWOOD'),
+(38, '38.jpg', 3, 'Udta Punjab', '01/05/2016', 'Abhishek Chaubey', 'Shahid Kapoor  Kareena Kapoor ', 'HINDI', 'BOLLYWOOD');
 
 -- --------------------------------------------------------
 
@@ -706,8 +720,8 @@ CREATE TABLE `userinfo` (
 --
 
 INSERT INTO `userinfo` (`User_Id`, `User_LoginName`, `User_LoginPassword`, `User_Email`, `User_MobileNo`, `User_FName`, `User_LName`, `User_Add`, `User_City`, `User_State`, `User_SQ`, `User_SA`, `User_Type`, `User_IsActive`) VALUES
-(12, 'ADMI', 'admi', 'cinemaol.asct@gmail.com', '8109579945', 'MP ADMI', 'CHAUHA', 'INDRAPURI BHEL,', 'BHOPAL', 'MADHYA PRADESH', 'SQ', 'SA', 'ADMI', 1),
-(13, 'ADMI', 'admi', 'cinemaol.asct@gmail.com', '8802524849', 'MATA PRASAD', 'CHAUHA', 'INDRAPURI,BHEL', 'BHOPAL', 'MADHYA PRADESH', 'SQ', 'SA', 'USER', 1),
+(12, 'admin', 'admin', 'cinemaol.asct@gmail.com', '8109579945', 'MP ADMI', 'CHAUHAN', 'INDRAPURI BHEL,', 'BHOPAL', 'MADHYA PRADESH', 'SQ', 'SA', 'ADMIN', 1),
+(13, 'admin', 'admin', 'cinemaol.asct@gmail.com', '8802524849', 'MATA PRASAD', 'CHAUHAN', 'INDRAPURI,BHEL', 'BHOPAL', 'MADHYA PRADESH', 'SQ', 'SA', 'USER', 1),
 (14, 'MATA_PD', '12345', 'mataprasad045@gmail.com', '8109579945', 'MATA PRASAD', 'CHAUHA', 'INDRAPURI, BHEL', 'BHOPAL', 'MADHYA PRADESH', 'SQ', 'SA', 'USER', 1),
 (16, 'ASHISH', '12345', NULL, NULL, 'ASHISH', 'GUPTA', 'ARERA COLONY, BHOPAL', 'BHOPAL', 'MADHYA PRADESH', 'SQ', 'SA', 'USER', 1),
 (17, 'MANO', '12345', NULL, NULL, 'MANORANJA', 'KUMAR', 'INDRAPURI, BHEL', 'BHOPAL', 'MADHYA PRADESH', 'SQ', 'SA', 'USER', 1),
@@ -716,7 +730,8 @@ INSERT INTO `userinfo` (`User_Id`, `User_LoginName`, `User_LoginPassword`, `User
 (20, 'A', 'aa', 'er.deepaksachan@gmail.com', '5678567', 'DEEPAK', 'A', 'FGHFGH, VJVGH', 'GFGF', 'UTTAR PRADESH', 'GDFGD', 'GHFGH', 'USER', 1),
 (21, 'MATA009', 'admi', 'mail@in.com', '12', 'MATA009', '', ', ', 'NOIDA', 'UTTAR PRADESH', 'SA', 'SA', 'USER', 1),
 (22, 'vp', 'vp', 'mail@vp.i', '1234567890', 'Vinay', 'Pandey', 'REWA   MP', 'REWA', 'MADHYA PRADESH', 'mata', 'rewama', 'USER', 1),
-(23, 'pd', '12345', 'gfjhg', '11222', 'MATA', 'PD', 'mm ', 'mm', 'NAGALAND', 'sa', 'sa', 'USER', 1);
+(23, 'pd', '12345', 'gfjhg', '11222', 'MATA', 'PD', 'mm ', 'mm', 'NAGALAND', 'sa', 'sa', 'USER', 1),
+(26, 'mata.yatra', '123456', 'mail@mail.inx', '1234567890', 'MATA', 'Yatra', 'abc xyz', 'delhi', 'MAHARASHTRA', 'sa', 'sa', 'USER', 1);
 
 --
 -- Indexes for dumped tables
@@ -857,7 +872,7 @@ ALTER TABLE `timinginfo`
 -- AUTO_INCREMENT for table `userinfo`
 --
 ALTER TABLE `userinfo`
-  MODIFY `User_Id` double NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `User_Id` double NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
