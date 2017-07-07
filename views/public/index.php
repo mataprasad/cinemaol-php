@@ -41,7 +41,7 @@ function public_index_body($p_movie_names, $p_movie_images) {
                     YOUR TICKETS HERE</a>
             </div>
             <h1></h1>
-            <form action="" method="post" onsubmit="return fn_ValidateForm();">
+            <form action="<?php HREF("/booking/select-show.php"); ?>" method="post" onsubmit="return fn_ValidateForm();">
                 <div align="center" style="width: 250px">
                     <br />
                     <table class="style1">

@@ -1,4 +1,4 @@
-<?php
+    <?php
 
 require_once(ABSPATH . '/lib/db_helper/shared/ez_sql_core.php');
 require_once(ABSPATH . '/lib/db_helper/mysqli/ez_sql_mysqli.php');

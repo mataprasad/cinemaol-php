@@ -1,6 +1,6 @@
 <?php
 
-function booking_select_sheats_head() { ?>
+function booking_select_sheats_head($output) { ?>
     <style type="text/css">
         .style1 {
             width: 595px;
@@ -40,9 +40,7 @@ function booking_select_sheats_head() { ?>
     <script type="text/javascript">
         $(document).ready(function () {
             var temp = 0;
-            ${
-                output
-            }
+    <?php echo $output; ?>
             $("input[name='chkSheat']").click(function () {
                 $("input[name='chkSheat']").parent().removeClass("selectedChk");
                 $("input[name='chkSheat']:checked").parent().addClass("selectedChk");
@@ -66,11 +64,14 @@ function booking_select_sheats_head() { ?>
                 }
                 var chkSheats = new Array();
                 $("input[name='chkSheat']").each(function (i, obj) {
-                    if ($(this).attr("disabled") != "disabled" && $(this).attr("checked") == "checked") {
-                        chkSheats.push($(this).val());
+                    if ($(obj).attr("disabled") != "disabled" && $(obj).attr("checked") == "checked") {
+                        var seat=new Object();
+                        seat.no=$(obj).val();
+                        seat.rate=$(obj).parent().parent().attr("rate");
+                        chkSheats.push(seat);
                     }
                 });
-                $("#chkSheats").val(chkSheats.join(","));
+                $("#chkSheats").val(JSON.stringify(chkSheats));
                 return true;
             });
             fn_Refresh();
@@ -89,7 +90,7 @@ function booking_select_sheats_head() { ?>
 <?php } ?>
 <?php
 
-function booking_select_sheats_body() {
+function booking_select_sheats_body($show_id, $show_meta) {
     ?>
     <form action="<?php HREF("/booking/select-sheats.php"); ?>" method="post">
         <div style="border: 1px solid #333333; padding: 0px; margin: 5px auto 0px auto;">
@@ -110,7 +111,7 @@ function booking_select_sheats_body() {
                         <div style="float: left; width: 600px; height: 400px;">
 
                             <table class="style1">
-                                <tr>
+                                <tr rate="100">
                                     <td class="style2">
                                         <input id="chkA0" type="checkbox" name="chkSheat" value="A0" /><label for="chkA0">A0</label></td>
                                     <td class="style2">
@@ -136,7 +137,7 @@ function booking_select_sheats_body() {
                                         style="background-color: #FFFFFF; color: #800000;">SILVER<br />
                                         (100 Rs.)</td>
                                 </tr>
-                                <tr>
+                                <tr rate="100">
                                     <td class="style2">
                                         <input id="chkB0" type="checkbox" name="chkSheat" value="B0" /><label for="chkB0">B0</label></td>
                                     <td class="style2">
@@ -159,7 +160,7 @@ function booking_select_sheats_body() {
                                     <td class="style2">
                                         <input id="chkB9" type="checkbox" name="chkSheat" value="B9" /><label for="chkB9">B9</label></td>
                                 </tr>
-                                <tr>
+                                <tr rate="100">
                                     <td class="style2">
                                         <input id="chkC0" type="checkbox" name="chkSheat" value="C0" /><label for="chkC0">C0</label></td>
                                     <td class="style2">
@@ -200,7 +201,7 @@ function booking_select_sheats_body() {
                                         (175 Rs.)</td>
 
                                 </tr>
-                                <tr>
+                                <tr rate="175">
                                     <td class="style4">
                                         <input id="chkD0" type="checkbox" name="chkSheat" value="D0" /><label for="chkD0">D0</label></td>
                                     <td class="style4">
@@ -225,7 +226,7 @@ function booking_select_sheats_body() {
                                         <input id="chkD9" type="checkbox" name="chkSheat" value="D9" /><label for="chkD9">D9</label></td>
 
                                 </tr>
-                                <tr>
+                                <tr rate="175">
                                     <td class="style4">
                                         <input id="chkE0" type="checkbox" name="chkSheat" value="E0" /><label for="chkE0">E0</label></td>
                                     <td class="style4">
@@ -250,7 +251,7 @@ function booking_select_sheats_body() {
                                         <input id="chkE9" type="checkbox" name="chkSheat" value="E9" /><label for="chkE9">E9</label></td>
 
                                 </tr>
-                                <tr>
+                                <tr rate="175">
                                     <td class="style4">
                                         <input id="chkF0" type="checkbox" name="chkSheat" value="F0" /><label for="chkF0">F0</label></td>
                                     <td class="style4">
@@ -293,7 +294,7 @@ function booking_select_sheats_body() {
                                         (225 Rs.)</td>
                                 </tr>
 
-                                <tr>
+                                <tr rate="225">
                                     <td class="style5">
                                         <input id="chkG0" type="checkbox" name="chkSheat" value="G0" /><label for="chkG0">G0</label></td>
                                     <td class="style5">
@@ -318,7 +319,7 @@ function booking_select_sheats_body() {
                                         <input id="chkG9" type="checkbox" name="chkSheat" value="G9" /><label for="chkG9">G9</label></td>
 
                                 </tr>
-                                <tr>
+                                <tr rate="225">
                                     <td class="style5">
                                         <input id="chkH0" type="checkbox" name="chkSheat" value="H0" /><label for="chkH0">H0</label></td>
                                     <td class="style5">
@@ -343,7 +344,7 @@ function booking_select_sheats_body() {
                                         <input id="chkH9" type="checkbox" name="chkSheat" value="H9" /><label for="chkH9">H9</label></td>
 
                                 </tr>
-                                <tr>
+                                <tr rate="225">
                                     <td class="style5">
                                         <input id="chkI0" type="checkbox" name="chkSheat" value="I0" /><label for="chkI0">I0</label></td>
                                     <td class="style5">
@@ -417,13 +418,16 @@ function booking_select_sheats_body() {
                 </div>
             </div>
         </div>
+        <textarea id="txtJsonData" name="txtJsonData" style="display: none;">
+            <?php echo $show_meta; ?>
+        </textarea>
         <input type="hidden" name="chkSheats" id="chkSheats" value="" />
-        <input type="hidden" name="showId" id="showId" value="${showId}" />
+        <input type="hidden" name="showId" id="showId" value="<?php echo $show_id; ?>" />
     </form>
 <?php } ?>
 <?php
 
-function booking_select_sheats_render() {
-    app_render("booking_select_sheats_body", "booking_select_sheats_head", null, array(), array(), array());
+function booking_select_sheats_render($output, $show_id, $show_meta) {
+    app_render("booking_select_sheats_body", "booking_select_sheats_head", null, array($show_id, $show_meta), array($output), array());
 }
 ?>

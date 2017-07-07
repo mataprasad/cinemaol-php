@@ -9,7 +9,9 @@ require_once '../web-config.php';
 
 //echo fnGetDbServerTime();
 //include the view file and call the render method
-require_once (ABSPATH . '/views/booking/confirm.php');
+require_once (ABSPATH . '/views/booking/book-ticket.php');
 
-booking_confirm_render();
+if (IS_POST()) {
+    booking_book_ticket_render();
+}
 ?>
