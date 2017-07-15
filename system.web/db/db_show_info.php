@@ -52,14 +52,31 @@ function getShowSeats($show_id) {
 
 function addTicketInfo($userId, $sheatsCount, $showDate, $showTime, $showId, $totalCost, $bookingDate) {
     $db = new ezSQL_mysqli(DB_USER, DB_PASSWORD, DB_NAME, DB_HOST);
-    $query = "select Sheat_No as text from TicketDetail where Show_Id='$show_id';";
+    $query = "CALL usp_book_ticket('" . $userId . "','" . $sheatsCount . "','"
+            . $showDate . "','" . $showTime . "','" . $showId . "','" . $totalCost . "','" . $bookingDate . "','')";
     $result = $db->get_results($query);
 
-    return $result;
+    if (APP_DEBUG) {
+        $db->dumpvar($result);
+    }
+    if ($result != NULL) {
+        return $result[0];
+    }
+    return NULL;
 }
 
 function addTicketDetial($showId, $ticketId, $selectSheats) {
-    
+    $db = new ezSQL_mysqli(DB_USER, DB_PASSWORD, DB_NAME, DB_HOST);
+    $rows_effected = 0;
+    for ($index = 0; $index < count($selectSheats); $index++) {
+        $query = "INSERT INTO TicketDetail (Ticket_id,Sheat_No,Sheat_Cost,Show_Id) VALUES ('"
+                . $ticketId . "','" . $selectSheats[$index]->no . "','" . $selectSheats[$index]->rate . "','" . $showId . "');";
+        $rows_effected += $db->query($query);
+    }
+    if (APP_DEBUG) {
+        $db->vardump($result);
+    }
+    return $rows_effected;
 }
 ?>
 

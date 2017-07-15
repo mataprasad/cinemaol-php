@@ -14,8 +14,8 @@ function partial_render_movie_history($data) { ?>
         </tr>
         <?php for ($index = 0; $index < count($data); $index++) { ?>
             <tr style="color: #000066;">
-                <td><?php echo date_format(date_create($data[$index]->Booking_Date), "d/m/Y"); ?></td>
-                <td><?php echo date_format(date_create($data[$index]->Show_Date), "d/m/Y"); ?></td>
+                <td><?php echo $data[$index]->Booking_Date; ?></td>
+                <td><?php echo $data[$index]->Show_Date; ?></td>
                 <td><?php echo $data[$index]->Show_Time; ?></td>
                 <td style="width: 150px;"><?php echo $data[$index]->Movie_Name; ?></td>
                 <td style="width: 50px;"><?php echo $data[$index]->Ticket_No; ?></td>

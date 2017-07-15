@@ -1,4 +1,4 @@
-    <?php
+<?php
 
 require_once(ABSPATH . '/lib/db_helper/shared/ez_sql_core.php');
 require_once(ABSPATH . '/lib/db_helper/mysqli/ez_sql_mysqli.php');
@@ -18,6 +18,14 @@ $requested_page = $_SERVER["REQUEST_URI"];
 //echo phpinfo();
 //fnDumpUserList();
 $call_for_system_dir = FALSE;
+
+if (isset($_SESSION["USER_INFO"])) {
+    if (!defined('APP_USER_ID')) {
+        define('APP_USER_ID', $_SESSION["USER_INFO"]->User_Id);
+    }
+}
+
+
 if (stripos($requested_page, "views") !== FALSE) {
     if (!isset($_SESSION["USER_INFO"])) {
         $call_for_system_dir = TRUE;

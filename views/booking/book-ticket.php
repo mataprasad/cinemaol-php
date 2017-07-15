@@ -143,7 +143,7 @@ function booking_book_ticket_body($booking_info) {
                         <td class="style3" align="center">&nbsp;</td>
                         <td align="center">&nbsp;</td>
                         <td align="right"><a id="btnPrint"
-                                             href='javascript:mypopup("<?php echo HREF("/user/booking-details.php?id=".$booking_info->TicketNo); ?>")'
+                                             href='javascript:mypopup("<?php echo HREF("/user/booking-details.php?id=".$booking_info->TicketID); ?>")'
                                              style="display: block; width: 100px; height: 25px; line-height: 25px; vertical-align: middle; text-align: center; background-color: #6600CC; color: #FFFFFF; font-weight: bold;">PRINT</a></td>
                     </tr>
                 </table>

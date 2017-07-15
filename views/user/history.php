@@ -66,9 +66,8 @@ function user_history_body($data, $total_records) {
         $('#historyPager').pagination(
                 {
                     items: $("#hdRecordsCount").val(),
-                    itemsOnPage: 10,
-                    cssStyle: 'compact-theme',
-                    displayedPages: 7,
+                    itemsOnPage: 7,
+                    cssStyle: 'compact-theme',                  
                     selectOnClick: true,
                     onPageClick: function (pageNo, event) {
                         $("#divWrapper").block();
