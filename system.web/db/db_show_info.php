@@ -49,5 +49,17 @@ function getShowSeats($show_id) {
 
     return $result;
 }
+
+function addTicketInfo($userId, $sheatsCount, $showDate, $showTime, $showId, $totalCost, $bookingDate) {
+    $db = new ezSQL_mysqli(DB_USER, DB_PASSWORD, DB_NAME, DB_HOST);
+    $query = "select Sheat_No as text from TicketDetail where Show_Id='$show_id';";
+    $result = $db->get_results($query);
+
+    return $result;
+}
+
+function addTicketDetial($showId, $ticketId, $selectSheats) {
+    
+}
 ?>
 

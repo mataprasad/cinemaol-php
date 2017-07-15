@@ -13,6 +13,7 @@ if (IS_POST()) {
     $show_meta = json_decode($show_meta_json);
     $chkSheats = json_decode($_POST["chkSheats"]);
 
+    $show_meta->sheats_layout=$chkSheats;
     $sheats_layout = "";
     $total_cost = 0;
 
@@ -42,6 +43,6 @@ if (IS_POST()) {
                 "sheats_count" => count($chkSheats),
                 "sheats_layout" => $sheats_layout);
 
-    booking_confirm_render($ticket_data, $show_meta_json);
+    booking_confirm_render($ticket_data, json_encode($show_meta));
 }
 ?>

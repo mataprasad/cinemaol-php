@@ -8,6 +8,9 @@ require_once (ABSPATH . '/system.web/db/db_user_info.php');
 require_once (ABSPATH . '/views/user/booking-details.php');
 $ticket_id = $_REQUEST["id"];
 $printOnLoad = TRUE;
+if ($ticket_id == "") {
+    $ticket_id = "-1045";
+}
 $data = getBookingDetails($ticket_id);
 if ($data != null) {
     user_booking_details_body($data->TktInfo, $data->SheatInfo, $printOnLoad);

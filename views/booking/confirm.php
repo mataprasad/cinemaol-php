@@ -17,10 +17,6 @@ function booking_confirm_head() { ?>
 function booking_confirm_body($ticket_data, $show_meta) {
     ?>
     <form action="<?php HREF("/booking/confirm.php"); ?>" method="post">
-        <input type="hidden" name="chkSheats" value="${ticketData.getChkSheats()}" />
-        <input type="hidden" name="showId" value="${ticketData.getShow_Id()}" />
-        <input type="hidden" name="totalCost" value="${ticketData.getTotalCost()}" />
-        <input type="hidden" name="totalCount" value="${ticketData.getSheats().size()}" />
         <div style="border: 1px solid #333333; padding: 0px; margin: 5px auto 0px auto;">
             <div style="border-style: none none solid none; border-width: 1px; border-color: #333333; height: 30px; background-color: #6600CC;">
                 <a style="font-size: 15pt; color: White; display: block; vertical-align: middle; line-height: 30px; text-align: justify; margin-left: 7px;">CONFIRM YOUR SELECTION --</a>

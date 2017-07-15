@@ -61,7 +61,7 @@ function booking_book_ticket_head() { ?>
 <?php } ?>
 <?php
 
-function booking_book_ticket_body() {
+function booking_book_ticket_body($booking_info) {
     ?>
     <div id="content_">
         <div
@@ -70,46 +70,60 @@ function booking_book_ticket_body() {
                 style="border-style: none none solid none; border-width: 1px; border-color: #333333; height: 30px; background-color: #6600CC;">
                 <a
                     style="font-size: 15pt; color: White; display: block; vertical-align: middle; line-height: 30px; text-align: justify; margin-left: 7px;">TICKET
-                    DETAIL, FOR TICKET NO. : <span id="lblTicketNo">${ticketData.getTicket_No()}</span>
+                    DETAIL, FOR TICKET NO. : <span id="lblTicketNo"><?php echo $booking_info->TicketNo; ?></span>
                 </a>&nbsp;
                 <table class="style1">
                     <tr>
                         <td class="style2" style="background-color: #FF9900">Online
                             Ticket No. :</td>
                         <td class="style3" style="background-color: #FF9900"><span
-                                id="lblOlTktNo" style="color: White; font-weight: bold;">${ticketData.getTicket_No()}</span>
+                                id="lblOlTktNo" style="color: White; font-weight: bold;"><?php echo $booking_info->TicketNo; ?></span>
                         </td>
                         <td style="background-color: #FF9900">Booking Date :</td>
                         <td style="background-color: #FF9900"><span id="lblBookingDate"
-                                                                    style="color: White; font-weight: bold;">${ticketData.getBooking_Date()}</span></td>
+                                                                    style="color: White; font-weight: bold;"><?php echo $booking_info->BookingDate; ?></span></td>
                     </tr>
                     <tr>
                         <td class="style2" style="background-color: #FF9900">Show Date :</td>
                         <td class="style3" style="background-color: #FF9900"><span
-                                id="lblShowDate" style="color: White; font-weight: bold;">${ticketData.getShow_Date()}</span>
+                                id="lblShowDate" style="color: White; font-weight: bold;"><?php echo $booking_info->ddlShowDate; ?></span>
                         </td>
                         <td style="background-color: #FF9900">Show Time :</td>
                         <td style="background-color: #FF9900"><span id="lblShowTime"
-                                                                    style="color: White; font-weight: bold;">${ticketData.getShow_Time()}</span></td>
+                                                                    style="color: White; font-weight: bold;"><?php echo $booking_info->ddlShowTime; ?></span></td>
                     </tr>
                     <tr>
                         <td class="style2" style="background-color: #FF9900">Movie Title
                             :</td>
                         <td class="style3" colspan="3" style="background-color: #FF9900">
                             <span id="lblMovieTitle"
-                                  style="color: White; font-weight: bold;">${ticketData.getMovie_Name()}</span>
+                                  style="color: White; font-weight: bold;"><?php echo $booking_info->ddlShowMovie; ?></span>
                         </td>
                     </tr>
                     <tr>
                         <td class="style2" style="background-color: #FF9900">Total Sheats
                             :</td>
                         <td class="style3" style="background-color: #FF9900"><span
-                                id="lblTotalSheats" style="color: White; font-weight: bold;">${ticketData.getSheats().size()}</span>
+                                id="lblTotalSheats" style="color: White; font-weight: bold;"><?php echo count($booking_info->sheats_layout); ?></span>
                         </td>
-
+                        <?php
+                        $sheats_layout = "";
+                        $total_cost = 0;
+                        for ($index = 0; $index < count($booking_info->sheats_layout); $index++) {
+                            $sheats_layout = $sheats_layout . '<tr>'
+                                    . '<td class="style2" style="background-color: #CCCCCC">&nbsp;</td>'
+                                    . '<td class="style3" align="center" style="background-color: #CCCCCC">'
+                                    . '' . $booking_info->sheats_layout[$index]->no . '</td>'
+                                    . '<td align="left" style="background-color: #CCCCCC">'
+                                    . $booking_info->sheats_layout[$index]->rate . '</td>'
+                                    . ' <td style="background-color: #CCCCCC">&nbsp;</td>'
+                                    . '</tr>';
+                            $total_cost = $total_cost + ((int) $booking_info->sheats_layout[$index]->rate);
+                        }
+                        ?>
                         <td style="background-color: #FF9900">Total Cost :</td>
                         <td style="background-color: #FF9900"><span id="lblTotalCost"
-                                                                    style="color: White; font-weight: bold;"> ${ticketData.getTotalCost()}</span></td>
+                                                                    style="color: White; font-weight: bold;"> <?php echo $total_cost; ?></span></td>
                     </tr>
                     <tr>
                         <td class="style2">&nbsp;</td>
@@ -123,13 +137,13 @@ function booking_book_ticket_body() {
                         <td class="style5"></td>
                         <td class="style5"></td>
                     </tr>
-                    <t:_bookingDetail></t:_bookingDetail>
+                    <?php echo $sheats_layout; ?>
                     <tr>
                         <td class="style2">&nbsp;</td>
                         <td class="style3" align="center">&nbsp;</td>
                         <td align="center">&nbsp;</td>
                         <td align="right"><a id="btnPrint"
-                                             href='javascript:mypopup("<c:url value="/user?do=booking-detail&print=1&id="/>${ticketData.getTicket_Id()}");'
+                                             href='javascript:mypopup("<?php echo HREF("/user/booking-details.php?id=".$booking_info->TicketNo); ?>")'
                                              style="display: block; width: 100px; height: 25px; line-height: 25px; vertical-align: middle; text-align: center; background-color: #6600CC; color: #FFFFFF; font-weight: bold;">PRINT</a></td>
                     </tr>
                 </table>
@@ -139,8 +153,7 @@ function booking_book_ticket_body() {
 <?php } ?>
 <?php
 
-function booking_book_ticket_render() {
-    app_render("booking_book_ticket_body", "booking_book_ticket_head", null, array(), array(), array());
+function booking_book_ticket_render($booking_infox) {
+    app_render("booking_book_ticket_body", "booking_book_ticket_head", null, array($booking_infox), array(), array());
 }
 ?>
-

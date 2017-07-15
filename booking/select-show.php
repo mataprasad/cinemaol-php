@@ -25,7 +25,9 @@ if (IS_POST()) {
             "ddlShowTime" => $_POST["ddlShowTime"],
             "ShowId" => $show_id,
             "HallNo" => $show_detail->Hall_No,
-            "sheats_layout" => ""
+            "TicketNo" => "",
+            "BookingDate" => "",
+            "sheats_layout" => array()
         );
 
 

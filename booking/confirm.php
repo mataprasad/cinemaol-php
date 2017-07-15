@@ -12,6 +12,9 @@ require_once '../web-config.php';
 require_once (ABSPATH . '/views/booking/book-ticket.php');
 
 if (IS_POST()) {
-    booking_book_ticket_render();
+    
+    $txtJsonData=$_POST["txtJsonData"];
+    $booking_info= json_decode($txtJsonData);
+    booking_book_ticket_render($booking_info);
 }
 ?>
