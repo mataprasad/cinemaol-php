@@ -15,13 +15,14 @@ function admin_remove_movie_head() { ?>
 
             $("#hdSelectedMovie").val(JSON.stringify(selectedValue));
 
-            return true;
+            return    confirm("Are you sure for this action?");
         }
     </script>
 <?php } ?>
 <?php
 
 function admin_remove_movie_body($msg, $movie_list) {
+    //echo var_dump($movie_list);
     ?>
     <form action="<?php HREF("/admin/remove-movie.php"); ?>" method="post" onsubmit="return fn_ValidateForm();">
         <input type="hidden" name="hdSelectedMovie" id="hdSelectedMovie"/>
@@ -48,7 +49,7 @@ function admin_remove_movie_body($msg, $movie_list) {
                             <td><?php echo $movie_list[$index]->MovieStatus_Value; ?></td>
                             <td><?php echo $movie_list[$index]->Movie_ReleaseDate; ?></td>
                             <td>
-                                <input id="selectedMovies" type="checkbox" value="${item.getMovie_Id()}" name="selectedMovies" />
+                                <input id="selectedMovies" type="checkbox" value="<?php echo $movie_list[$index]->Movie_Id; ?>" name="selectedMovies" />
                             </td>
                         </tr> 
                     <?php } ?>

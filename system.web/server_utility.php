@@ -1,7 +1,6 @@
 <?php
 
 function REDIRECT($url) {
-
     header("Location: " . $url);
     exit();
 }
@@ -59,5 +58,5 @@ function GET_GUID() {
     }
     return strtolower($uuid);
 }
-?>
 
+?>

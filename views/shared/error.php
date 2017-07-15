@@ -6,11 +6,9 @@ function shared_error_body($msg) { ?>
         Unable to process your request. Please try after some times. 
     </h1>
     <p>
-        <?php echo $msg; ?>
+    <?php echo $msg; ?>
     </p>
-<?php } ?>
-
-<?php
+<?php } ?><?php
 
 function render_error($msg) {
     if ($msg == NULL) {

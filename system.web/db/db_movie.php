@@ -58,7 +58,8 @@ function getMoviesToRemove() {
 function removeMovie($ids) {
     $db = new ezSQL_mysqli(DB_USER, DB_PASSWORD, DB_NAME, DB_HOST);
     $query = "UPDATE MovieInfo SET Movie_Status = 3 "
-            . "WHERE Movie_Id in (" + join(",", $ids) + ")";
+            . "WHERE Movie_Id in (" . join(",", $ids) . ")";
+
     $result = $db->query($query);
     if (APP_DEBUG) {
         $db->vardump($result);
