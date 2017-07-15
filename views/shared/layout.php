@@ -64,7 +64,7 @@ function app_render($fn_body, $fn_header_section, $fn_footer_section, $param_fn_
                         </a>
                     </div>
 
-                    <?php require_once ("login-view.php"); ?>
+                    <?php require_once (ABSPATH."/views/shared/login-view.php"); ?>
 
                 </div>
             </div>

@@ -148,4 +148,3 @@ function updateUser($user_info, $user_id) {
     return $result;
 }
 ?>
-
